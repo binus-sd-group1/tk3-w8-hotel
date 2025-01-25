@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Booking</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hotel Booking</h1>
+
+    <!-- Catalog Section -->
+    <h2>Available Rooms</h2>
+    <div id="catalog">
+      <!-- Rooms will be dynamically loaded here -->
+    </div>
+
+    <!-- Booking Section -->
+    <h2>Book a Room</h2>
+    <form id="bookingForm">
+      <label for="roomId">Room ID:</label>
+      <input type="text" id="roomId" name="roomId" required>
+      <label for="customerName">Your Name:</label>
+      <input type="text" id="customerName" name="customerName" required>
+      <button type="submit">Book Now</button>
+    </form>
+
+    <!-- Payment Section -->
+    <h2>Make a Payment</h2>
+    <form id="paymentForm">
+      <label for="bookingId">Booking ID:</label>
+      <input type="text" id="bookingId" name="bookingId" required>
+      <label for="amount">Amount:</label>
+      <input type="number" id="amount" name="amount" required>
+      <button type="submit">Pay Now</button>
+    </form>
+  </div>
+
+  <script>
+    // Base API URL (replace with your actual API gateway URL)
+    const API_BASE_URL = 'http://localhost:3000';
+
+    // Fetch catalog data from Catalog Service
+    async function loadCatalog() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/catalog`);
+        const rooms = await response.json();
+
+        const catalogDiv = document.getElementById('catalog');
+        rooms.forEach(room => {
+          const roomCard = document.createElement('div');
+          roomCard.classList.add('card');
+          roomCard.innerHTML = `
+            <h3>Room ${room.room_number} - ${room.room_type}</h3>
+            <p>Price: $${room.price}</p>
+            <p>Available: ${room.availability ? 'Yes' : 'No'}</p>
+          `;
+          catalogDiv.appendChild(roomCard);
+        });
+      } catch (error) {
+        console.error('Error loading catalog:', error);
+      }
+    }
+
+    // Handle booking form submission
+    document.getElementById('bookingForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const roomId = document.getElementById('roomId').value;
+      const customerName = document.getElementById('customerName').value;
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/booking`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ roomId, customerName })
+        });
+
+        const result = await response.json();
+        alert(`Booking successful! Booking ID: ${result.bookingId}`);
+      } catch (error) {
+        console.error('Error making booking:', error);
+      }
+    });
+
+    // Handle payment form submission
+    document.getElementById('paymentForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const bookingId = document.getElementById('bookingId').value;
+      const amount = document.getElementById('amount').value;
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/payment`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ bookingId, amount })
+        });
+
+        const result = await response.json();
+        alert(`Payment successful! Transaction ID: ${result.transactionId}`);
+      } catch (error) {
+        console.error('Error making payment:', error);
+      }
+    });
+
+    // Load catalog on page load
+    loadCatalog();
+  </script>
+</body>
+</html>
