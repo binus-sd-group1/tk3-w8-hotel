@@ -67,12 +67,16 @@
 
   <script>
     // Base API URL (replace with your actual API gateway URL)
-    const API_BASE_URL = 'http://localhost:3000';
+    const BASE_ADDRESS = 'http://139.180.186.171';
+    const API_CATALOG_SERVICE = BASE_ADDRESS+":"+3001;
+    const API_BOOKING_SERVICE = BASE_ADDRESS+":"+3002;
+    const API_PAYMENT_SERVICE = BASE_ADDRESS+":"+3003;
+
 
     // Fetch catalog data from Catalog Service
     async function loadCatalog() {
       try {
-        const response = await fetch(`${API_BASE_URL}/catalog`);
+        const response = await fetch(`${API_CATALOG_SERVICE}/catalog`);
         const rooms = await response.json();
 
         const catalogDiv = document.getElementById('catalog');
@@ -99,7 +103,7 @@
       const customerName = document.getElementById('customerName').value;
 
       try {
-        const response = await fetch(`${API_BASE_URL}/booking`, {
+        const response = await fetch(`${API_BOOKING_SERVICE}/booking`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ roomId, customerName })
@@ -120,7 +124,7 @@
       const amount = document.getElementById('amount').value;
 
       try {
-        const response = await fetch(`${API_BASE_URL}/payment`, {
+        const response = await fetch(`${API_PAYMENT_SERVICE}/payment`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ bookingId, amount })
