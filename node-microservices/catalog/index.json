@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "catalog-service",
+            "script": "npm",
+            "args" : "run start"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "booking-service",
+            "script": "npm",
+            "args" : "run start"
+        }
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "apps": [
+        {
+            "name": "payment-service",
+            "script": "npm",
+            "args" : "start"
+        }
+    ]
+}

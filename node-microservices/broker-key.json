@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "tk3-w8-hotel",
+  "private_key_id": "40899e8516f5a059df3b99491ef4f329e3516100",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC+OrMsRp/v8JYK\n9oilXRsflyub/uPAN4wNJdQJl0yxmrL6PuXnpXmf0npo2WWdXyRL8qXOGAGCKrds\n0JjpDA9d/cXLSf1R4rKphy6q+G//qU23h/bU6Z/qtMEyWe4wTI4i0bldDN7lVUSM\nfOsLLohPBIwcHfzI6myeOjUFFgeFPce81fuuwgL5gEA6H4a6YGC/isoLRCFcep9m\nTwIgV/2Qm23dpkMhYCt+ejkqM42D1StVktvqqH2zhSrQwOn0bF5or1DAIj+pFFXB\neOl7lMQrJcogxYHcP7bCbowRFEJdfZXiZbVL7Wgspfghucntzrk7p5jp2OAkJLfR\n4RTosXSJAgMBAAECggEANvWxp3SeJ838I523vAMK35Um6dJ6DaJeybuop765T0TR\nOeCrPsJ9wbGnYRySMaX30COCSOmBohBiX0NjMk2kMPUtTL8LO7nCAZ3HW2kcvqI1\nDHXxV/FJnR9tA/WcjgLIPAIYymv6CAsbG3XJ2LiwdBftvP/i9U9ZY1uQzu/e61z+\niDCEQXCaYV1gdcCckhS2aDrmRThb7KxCreOBHoqdkaosWyP3FC2o/XB2p6r4S+RO\n2/JeCIir42kuLr7uAaoFXiv4AlzymLf2cMl/lAfxCgxF1DhxxuLeoPU3sE1yzlid\nH6Xr1OLVAdK+kTh1bL2QtsQhB9BtyCuwQ0PevxsggwKBgQDxznvfu15Fshz15gZ3\nQCYLjcLrTnr0x3KwJeiijAAbGX15f4QirD1HWxe4qum4cX9306ftswO4+QycfkYe\nz41R9GW6YsWzG8nGSddUeusQ2haj6TDtB9IkOHsrdCqwjfSmgwjVn5PflI6EXBSn\nkaGmwrtv5A2DkOkQHOtbg5vGpwKBgQDJZTAdqxyt3AGWm7bDeHPvqGdVzWMS3bok\nC9nNgW6XKQVAsTmFS/a5j7yuV78ihkUWj3t0u2qZNJlLSGYVc0ZspEsgUISQGUeR\n/gKcvF1njI7KDl3pfwSx/wSq+WqXntRBy6H4Lm7bRMM8Xcnfp64mqRIFEqxKaoDo\nLdRZZPOBTwKBgQCQUcf3SbJDcMH+NZMIW54ZaTu8C3QxYlTeM1H8qghqJDWSbXwk\n4Z4VV5X53vBt6DfHAemJYj3HicVwJaGeRAw5rN+Gdes/MkekdG/zeQWRYkj+/W/5\nGKDgg2FoFwZfp+or86szLPIqEFVbREYDmVTc3f7XEkrKipO/zTLfxNYVowKBgFW3\n4dDe4agGOg7WW+W6wO3CaakVcBO5l957xMo5Ss6/wOKWC/t2J583VIGIC2wwZfuC\nOnOmyWpH/u8R85ExrUnUa71nR+TlPZcf3BDGA6NtKeFKWCJn06HG/z+eRQYfrgwL\nFfdCHCDrlYV+DcxJ3E/MKkVKe1Z5GkC4MOeTlij1AoGBAOgLOzbyoZsHijIB/GDy\nTLN2ciCTztzoGfJR7ZrfrbLI2PbMiUtNNmA4+iJa+erdNwfYIB59xMYuOw3nKdek\nviDHqB+6hwbPlk48aPscThBzbnSNCNOqHovybtZ/94JDRQ6Rlgk8wNlyqA7ye/zA\nuPqnc/D87zgtmRnkfAry9/XH\n-----END PRIVATE KEY-----\n",
+  "client_email": "main-service@tk3-w8-hotel.iam.gserviceaccount.com",
+  "client_id": "112133453846601815470",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/main-service%40tk3-w8-hotel.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
