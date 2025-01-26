@@ -76,7 +76,7 @@
     // Fetch catalog data from Catalog Service
     async function loadCatalog() {
       try {
-        const response = await fetch(`${API_CATALOG_SERVICE}/catalog`);
+        const response = await fetch(`${API_CATALOG_SERVICE}/list`);
         const rooms = await response.json();
 
         const catalogDiv = document.getElementById('catalog');
@@ -103,7 +103,7 @@
       const customerName = document.getElementById('customerName').value;
 
       try {
-        const response = await fetch(`${API_BOOKING_SERVICE}/booking`, {
+        const response = await fetch(`${API_BOOKING_SERVICE}/add`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ roomId, customerName })
@@ -124,7 +124,7 @@
       const amount = document.getElementById('amount').value;
 
       try {
-        const response = await fetch(`${API_PAYMENT_SERVICE}/payment`, {
+        const response = await fetch(`${API_PAYMENT_SERVICE}/add`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ bookingId, amount })
