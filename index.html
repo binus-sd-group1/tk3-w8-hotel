@@ -35,10 +35,10 @@
     .availability {
       font-weight: bold;
     }
-    .available {
+    .green {
       color: green;
     }
-    .unavailable {
+    .red {
       color: red;
     }
   </style>
@@ -102,7 +102,7 @@
           roomCard.innerHTML = `
             <h3>Room ${room.room_number} - ${room.room_type}</h3>
             <p>Price: $${room.price}</p>
-            <p class="availability ${room.availability ? 'available' : 'unavailable'}">
+            <p class="availability ${room.availability ? 'green' : 'red'}">
               Available: ${room.availability ? 'Yes' : 'No'}
             </p>
           `;
@@ -128,7 +128,9 @@
             <p>Booking ID: ${booking.bookingId}</p>
             <p>Room ID: ${booking.roomId}</p>
             <p>Customer Name: ${booking.customerName}</p>
-            <p>Status: ${booking.status}</p>
+            <p class="status ${booking.status === 'paid' ? 'green' : 'red'}">
+              Status: ${booking.status === 'paid' ? 'Paid' : 'Confirmed'}
+            </p>
           `;
           bookingList.appendChild(bookingDiv);
         });
@@ -173,18 +175,20 @@
 
     ws.onmessage = (event) => {
       try {
-        const bookingUpdate = JSON.parse(event.data);
+        const eventData = JSON.parse(event.data);
 
         // Check if the update is for room availability
-        if (bookingUpdate.roomId) {
-          updateRoomAvailability(bookingUpdate.roomId, bookingUpdate.availability);
+        if (eventData.type == "book") {
+          updateRoomAvailability(eventData.roomId, eventData.availability);
+        }else if(eventData.type == "payment"){
+          updateBookingStatus(eventData.bookingId, eventData.status);
         }
       } catch (error) {
         console.error("Error processing WebSocket message:", error);
       }
     };
 
-    // Function to update room availability in the UI
+    // update status kamar pada UI
     function updateRoomAvailability(roomId, availability) {
       const catalogDiv = document.getElementById("catalog");
       const roomCards = catalogDiv.getElementsByClassName("card");
@@ -193,8 +197,24 @@
         if (card.innerHTML.includes(`Room ${roomId}`)) {
           const availabilityText = card.querySelector("p.availability");
           availabilityText.textContent = `Available: ${availability ? "Yes" : "No"}`;
-          availabilityText.classList.toggle("available", availability);
-          availabilityText.classList.toggle("unavailable", !availability);
+          availabilityText.classList.toggle("green", availability);
+          availabilityText.classList.toggle("red", !availability);
+          break;
+        }
+      }
+    }
+
+    // update status booking pada UI
+    function updateBookingStatus(bookingId, status) {
+      const bookingList = document.getElementById("bookingList");
+      const bookings = bookingList.getElementsByClassName("card");
+
+      for (const booking of bookings) {
+        if (booking.innerHTML.includes(`Booking ID: ${bookingId}`)) {
+          const statusElement = booking.querySelector(".status");
+          statusElement.textContent = `Status: ${status === "paid" ? "Paid" : "Confirmed"}`;
+          statusElement.classList.toggle("green", status === "paid");
+          statusElement.classList.toggle("red", status !== "paid");
           break;
         }
       }
