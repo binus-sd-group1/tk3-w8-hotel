@@ -105,7 +105,7 @@
           roomCard.innerHTML = `
             <h3>Room ${room.room_number} - ${room.room_type}</h3>
             <p>Price: $${room.price}</p>
-            <p>
+            <p class="availability">
               Available: ${room.availability ? 'Yes' : 'No'}
             </p>
           `;
@@ -132,7 +132,7 @@
             <p>Booking ID: ${booking.bookingId}</p>
             <p>Room ID: ${booking.roomId}</p>
             <p>Customer Name: ${booking.customerName}</p>
-            <p>
+            <p class="status">
               Status: ${booking.status === 'paid' ? 'Paid' : 'Confirmed'}
             </p>
           `;
