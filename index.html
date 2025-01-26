@@ -176,7 +176,7 @@
     ws.onmessage = (event) => {
       try {
         const eventData = JSON.parse(event.data);
-
+        console.log(eventData);
         // Check if the update is for room availability
         if (eventData.type == "book") {
           updateRoomAvailability(eventData.roomId, eventData.availability);
