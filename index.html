@@ -151,6 +151,7 @@
 
     ws.onmessage = (event) => {
       try {
+        console.log(event);
         const bookingUpdate = JSON.parse(event.data);
 
         // Check if the update is for room availability
