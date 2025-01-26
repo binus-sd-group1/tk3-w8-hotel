@@ -138,6 +138,44 @@
 
     // Load catalog on page load
     loadCatalog();
+
+    // WebSocket URL (replace with your WebSocket server's URL)
+    const WS_URL = "wss://ws.microservices-tk3-w8.cyou";
+
+    // Initialize WebSocket
+    const ws = new WebSocket(WS_URL);
+
+    ws.onopen = () => {
+      console.log("Connected to WebSocket server.");
+    };
+
+    ws.onmessage = (event) => {
+      try {
+        const bookingUpdate = JSON.parse(event.data);
+
+        // Check if the update is for room availability
+        if (bookingUpdate.roomId) {
+          updateRoomAvailability(bookingUpdate.roomId, bookingUpdate.availability);
+        }
+      } catch (error) {
+        console.error("Error processing WebSocket message:", error);
+      }
+    };
+
+    // Function to update room availability in the UI
+    function updateRoomAvailability(roomId, availability) {
+      const catalogDiv = document.getElementById("catalog");
+      const roomCards = catalogDiv.getElementsByClassName("card");
+
+      for (const card of roomCards) {
+        if (card.innerHTML.includes(`Room ${roomId}`)) {
+          const availabilityText = card.querySelector("p:last-child");
+          availabilityText.textContent = `Available: ${availability ? "Yes" : "No"}`;
+          break;
+        }
+      }
+    }
+
   </script>
 </body>
 </html>
