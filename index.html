@@ -224,6 +224,7 @@
 
     // tambah data booking
     document.getElementById('bookingForm').addEventListener('submit', async (event) => {
+      document.querySelector('#bookingForm button[type="submit"]').setAttribute("disabled","disabled");
       event.preventDefault();
 
       const roomId = document.getElementById('roomId').value;
@@ -243,10 +244,12 @@
       } catch (error) {
         console.error('Error making booking:', error);
       }
+      document.querySelector('#bookingForm button[type="submit"]').removeAttribute("disabled");
     });
 
     // tambah data pembayaran
     document.getElementById('paymentForm').addEventListener('submit', async (event) => {
+      document.querySelector('#paymentForm button[type="submit"]').setAttribute("disabled","disabled");
       event.preventDefault();
 
       const bookingId = document.getElementById('bookingId').value;
@@ -265,6 +268,7 @@
       } catch (error) {
         console.error('Error making payment:', error);
       }
+      document.querySelector('#paymentForm button[type="submit"]').removeAttribute("disabled");
     });
 
     //load data pada halaman
