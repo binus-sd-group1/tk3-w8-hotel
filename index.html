@@ -78,24 +78,26 @@
     </form>
     <h3>Payment List</h3>
     <div id="paymentList">
-      <!-- Payments will be dynamically loaded here -->
+      <!-- data pembayaran muncul disini -->
     </div>
   </div>
 
   <script>
-    // Base API URL (replace with your actual API gateway URL)
+    // Base API URL (ganti dengan alamat IP / domain)
     const API_CATALOG_SERVICE = "https://catalog.microservices-tk3-w8.cyou";
     const API_BOOKING_SERVICE = "https://booking.microservices-tk3-w8.cyou";
     const API_PAYMENT_SERVICE = "https://payment.microservices-tk3-w8.cyou";
+    // WebSocket URL (ganti dengan IP / domain)
+    const WS_URL = "wss://ws.microservices-tk3-w8.cyou";
 
-    // Fetch catalog data from Catalog Service
+    // ambil data catalog
     async function loadCatalog() {
       try {
         const response = await fetch(`${API_CATALOG_SERVICE}/list`);
         const rooms = await response.json();
 
         const catalogDiv = document.getElementById('catalog');
-        catalogDiv.innerHTML = ""; // Clear previous data
+        catalogDiv.innerHTML = ""; 
         rooms.forEach(room => {
           const roomCard = document.createElement('div');
           roomCard.classList.add('card');
@@ -114,14 +116,14 @@
       }
     }
 
-    // Fetch booking data
+    // ambil data booking
     async function loadBookings() {
       try {
         const response = await fetch(`${API_BOOKING_SERVICE}/list`);
         const bookings = await response.json();
 
         const bookingList = document.getElementById('bookingList');
-        bookingList.innerHTML = ""; // Clear previous data
+        bookingList.innerHTML = ""; 
         bookings.forEach(booking => {
           const bookingDiv = document.createElement('div');
           bookingDiv.classList.add('card');
@@ -141,14 +143,14 @@
       }
     }
 
-    // Fetch payment data
+    // ambil data pembayaran
     async function loadPayments() {
       try {
         const response = await fetch(`${API_PAYMENT_SERVICE}/list`);
         const payments = await response.json();
 
         const paymentList = document.getElementById('paymentList');
-        paymentList.innerHTML = ""; // Clear previous data
+        paymentList.innerHTML = ""; 
         payments.forEach(payment => {
           const paymentDiv = document.createElement('div');
           paymentDiv.classList.add('card');
@@ -165,10 +167,9 @@
       }
     }
 
-    // WebSocket URL (replace with your WebSocket server's URL)
-    const WS_URL = "wss://ws.microservices-tk3-w8.cyou";
+    
 
-    // Initialize WebSocket
+    // inisialisasi web socket
     const ws = new WebSocket(WS_URL);
 
     ws.onopen = () => {
@@ -179,7 +180,6 @@
       try {
         const eventData = JSON.parse(event.data);
         console.log(eventData);
-        // Check if the update is for room availability
         if (eventData.type == "book") {
           updateRoomAvailability(eventData.roomId, eventData.availability);
         }else if(eventData.type == "payment"){
@@ -222,7 +222,7 @@
       }
     }
 
-    // Handle booking form submission
+    // tambah data booking
     document.getElementById('bookingForm').addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -245,7 +245,7 @@
       }
     });
 
-    // Handle payment form submission
+    // tambah data pembayaran
     document.getElementById('paymentForm').addEventListener('submit', async (event) => {
       event.preventDefault();
 
@@ -267,7 +267,7 @@
       }
     });
 
-    // Load initial data on page load
+    //load data pada halaman
     loadCatalog();
     loadBookings();
     loadPayments();
